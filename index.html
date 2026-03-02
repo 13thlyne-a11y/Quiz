@@ -172,14 +172,31 @@ score+=5
 }
 })
 
-resultDiv.textContent="점수 : "+score+" / 100"
+// 퀴즈 숨기기
+quizContainer.style.display = "none";
+submitBtn.style.display = "none";
+
+// 점수 표시
+resultDiv.textContent = score + "점";
+resultDiv.style.fontSize = "40px";
+
+// 🎉 80점 이상이면 합격 메시지 추가
+if(score >= 80){
+    resultDiv.innerHTML += "<br><span style='color:#FFD700; font-size:32px;'>🎉 합격!</span>";
+}
+
 retryBtn.style.display="block"
-window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"})
+window.scrollTo({top:0,behavior:"smooth"})
 }
 
 retryBtn.onclick=function(){
 resultDiv.textContent=""
 retryBtn.style.display="none"
+
+// 🔥 다시 보이게 하기
+quizContainer.style.display = "block";
+submitBtn.style.display = "block";
+
 loadQuiz()
 window.scrollTo({top:0,behavior:"smooth"})
 }
